@@ -2,7 +2,7 @@ name: Deploy Vite app to GitHub Pages
 
 on:
   push:
-    branches: [ "mainer" ]
+    branches: [ "mainer" ] # 如果你用 main，這裡改成 main
 
 jobs:
   build:
@@ -12,8 +12,8 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
-      - run: npm install
-      - run: npx vite build
+      - run: npm ci          # 比 npm install 更乾淨，直接依照 package-lock.json
+      - run: npx vite build  # 這裡改成 npx
       - uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
